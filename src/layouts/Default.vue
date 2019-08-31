@@ -1,6 +1,7 @@
 <template>
     <d-container fluid>
         <vue-topprogress ref="topProgress"></vue-topprogress>
+        <Meta-Data :title='title'/>
         <d-row>
             <!-- Main Sidebar -->
             <main-sidebar :items="sidebarItems"/>
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+  import MetaData from './../components/extra/MetaData';
   import getSidebarItems from '@/data/sidebar-nav-items';
 
   // Main layout components
@@ -32,6 +34,7 @@
   export default {
     name: 'analytics',
     components: {
+      MetaData,
       MainNavbar,
       MainSidebar,
       MainFooter,
@@ -39,6 +42,7 @@
     data() {
       return {
         sidebarItems: getSidebarItems(),
+        title: this.$router.currentRoute.meta.title ? this.$router.currentRoute.meta.title : 'Home'
       };
     },
     mounted() {
