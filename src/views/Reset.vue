@@ -13,25 +13,19 @@
                         <div class="px-lg-2 mx-2 my-2 text-center">
                             <i class="my-4 fa fa-arrow-down"></i>
                             <h6 class="m-0">Existing Member ?</h6>
-                            <p class="m-2">Please login here</p>
+                            <p class="m-2">Reset Your Account</p>
 
                             <d-form onsubmit="return false">
                                 <!-- Dropdown Input Groups -->
                                 <d-input-group prepend="<i class='fa fa-envelope'/>" class="mb-3">
-                                    <d-input :disabled="loading" v-model="email" type="email" placeholder="Email"/>
-                                </d-input-group>
-                                <d-input-group prepend="<i class='fa fa-key'/>" class="mb-3">
-                                    <d-input :disabled="loading" v-model="password" type="password"
-                                             placeholder="Password"/>
+                                    <d-input :disabled="loading" v-model="email" type="email" placeholder="Registered email"/>
                                 </d-input-group>
                                 <d-input-group>
-                                    <d-btn :disabled="loading" v-on:click="onSubmit" class="btn-block">Login</d-btn>
+                                    <d-btn :disabled="loading" v-on:click="onSubmit" class="btn-block btn-danger">Reset</d-btn>
                                 </d-input-group>
-                                <router-link to="/reset"><p class="mt-0" style="font-size: 13px">Forgot Password</p>
-                                </router-link>
                             </d-form>
                             -OR-
-                            <router-link to="/register"><p class="mt-0" style="font-size: 13px">Register</p>
+                            <router-link to="/login"><p class="mt-0" style="font-size: 13px">Re-Login</p>
                             </router-link>
                         </div>
                     </d-list-group>

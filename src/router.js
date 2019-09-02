@@ -1,9 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 //New Import views
+import Test from './views/rough/ComponentsOverview';
 import MainLayout from './layouts/Default';
+import PlainLayout from './layouts/PlainLayout';
 import Errors from './views/Errors';
 import LoginView from './views/Login';
+import RegisterView from './views/Register';
+import ResetView from './views/Reset';
 import UserProfileView from './views/UserProfile';
 
 //ThirdParty library
@@ -24,9 +28,35 @@ export default new Router({
   },
   routes: [
     {
-      path: '/login',
-      name: 'login',
-      component: LoginView,
+      path: '/test',
+      name: 'test',
+      component: Test,
+      meta: { title: 'test' }
+    },
+    {
+      path: '/',
+      component: PlainLayout,
+      redirect: '/login',
+      children: [
+        {
+          path: '/login',
+          name: 'login',
+          component: LoginView,
+          meta: { title: 'Login' }
+        },
+        {
+          path: '/register',
+          name: 'register',
+          component: RegisterView,
+          meta: { title: 'Register' }
+        },
+        {
+          path: '/reset',
+          name: 'reset',
+          component: ResetView,
+          meta: { title: 'Reset' }
+        }
+      ]
     },
     //main application
     {
@@ -34,8 +64,10 @@ export default new Router({
       component: MainLayout,
       redirect: '/profile',
       beforeEnter: (req, res, next) => {
-        console.log(req);
-        next();
+        if (data.auth.isLogin() && !data.auth.isAdminRole()) {
+          next();
+        }
+        next({ name: 'login' });
       },
       children: [
         {
@@ -56,8 +88,10 @@ export default new Router({
       redirect: '/admin/dashboard',
       meta: { isAdmin: true },
       beforeEnter: (req, res, next) => {
-        console.log(res);
-        next();
+        if (data.auth.isLogin() && data.auth.isAdminRole()) {
+          next();
+        }
+        next({ name: 'login' });
       },
       children: [
         {
