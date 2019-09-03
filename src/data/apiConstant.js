@@ -1,12 +1,13 @@
 /**
  Author: Revelation Ben
  Company: RSC Byte Limited
- Email: nusktecsoft@gmail.com
+ Email: nusktecsoft@gmail.com
  Phone: 2348164242320
  **/
-class apiConstant {
-
-}
-
+const SSK = 'c783aa9384f9c329678c005a28c55c95bfb62df4';
+const API_URL = 'http://localhost:3000/api';
 // export default
-export default apiConstant;
+let Apis = {
+  createUser: API_URL + '/auth/create/?ssk=' + SSK,
+};
+export default Apis;
