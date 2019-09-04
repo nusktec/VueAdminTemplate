@@ -38,6 +38,15 @@ export default new Router({
       path: '/',
       component: PlainLayout,
       redirect: '/login',
+      beforeEnter: (req, res, next) => {
+        if (data.auth.isLogin() && !data.auth.isAdminRole()) {
+          next({ name: 'profile' });
+        } else if (data.auth.isLogin() && data.auth.isAdminRole()) {
+          next({ name: 'dashboard' });
+        } else {
+          next();
+        }
+      },
       children: [
         {
           path: '/login',
@@ -67,8 +76,9 @@ export default new Router({
       beforeEnter: (req, res, next) => {
         if (data.auth.isLogin() && !data.auth.isAdminRole()) {
           next();
+        } else {
+          next({ name: 'login' });
         }
-        next({ name: 'login' });
       },
       children: [
         {
