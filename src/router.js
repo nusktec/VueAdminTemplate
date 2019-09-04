@@ -5,6 +5,7 @@ import Test from './views/rough/ComponentsOverview';
 import MainLayout from './layouts/Default';
 import PlainLayout from './layouts/PlainLayout';
 import Errors from './views/Errors';
+import SuccessView from './views/Success';
 import LoginView from './views/Login';
 import RegisterView from './views/Register';
 import ResetView from './views/Reset';
@@ -105,7 +106,12 @@ export default new Router({
         },
       ]
     },
-    //Error handling
+    //Error and success handling
+    {
+      path: '/success',
+      name: 'success',
+      component: SuccessView,
+    },
     {
       path: '/errors',
       name: 'errors',
